@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  branch = "master"
+  digest = "1:155ca6abe1f334b4d5a9f3bc2452f89eda8a785c3c4d395d9ebb039a503592d1"
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "5e25c22bd5d6de03265bbe5462dcd162f85046f6"
+
+[[projects]]
   digest = "1:abeb38ade3f32a92943e5be54f55ed6d6e3b6602761d74b4aab4c9dd45c18abd"
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
@@ -51,15 +59,17 @@
   version = "v1.1.1"
 
 [[projects]]
-  digest = "1:638109dbe99aa85b480bcd2274e4688546b4dd5fa4a0a51bf073937c87403b6b"
+  digest = "1:a9ab9f95fcb3be76eb505ad0ebef87f3e9d3278bf5b752c49d0fcdc12e10717c"
   name = "github.com/grpc-ecosystem/go-grpc-middleware"
   packages = [
     ".",
+    "auth",
     "logging",
     "logging/logrus",
     "logging/logrus/ctxlogrus",
     "tags",
     "tags/logrus",
+    "util/metautils",
     "validator",
   ]
   pruneopts = "UT"
@@ -99,11 +109,13 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:f552b6f0a0ba9c574b54bb6d7e9d027c89fb2237e881f516ffb34e92278a4b24"
+  digest = "1:182f3b30f682cce2376f5a5c257a10c9afb0b6ce0a656c0f85561c93110a6819"
   name = "github.com/infobloxopen/atlas-app-toolkit"
   packages = [
+    "auth",
     "errors",
     "gateway",
+    "gorm",
     "gorm/resource",
     "health",
     "query",
@@ -119,9 +131,12 @@
   version = "v0.18.2"
 
 [[projects]]
-  digest = "1:447ff45708e10b03748c3e2c32e82ddce6b692b87ef36516b68a7527e1ac0e02"
+  digest = "1:a323ddc878c1dcb6c66c63cb1683517a8c6bd320f1572262d043f0e39064541f"
   name = "github.com/infobloxopen/protoc-gen-gorm"
-  packages = ["options"]
+  packages = [
+    "errors",
+    "options",
+  ]
   pruneopts = "UT"
   revision = "29dcc0063a9883a1e83020cd652141adaf038281"
   version = "v0.17.0"
@@ -369,15 +384,21 @@
     "github.com/golang/protobuf/proto",
     "github.com/golang/protobuf/ptypes",
     "github.com/golang/protobuf/ptypes/empty",
+    "github.com/golang/protobuf/ptypes/timestamp",
     "github.com/grpc-ecosystem/go-grpc-middleware",
     "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus",
     "github.com/grpc-ecosystem/go-grpc-middleware/validator",
     "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options",
+    "github.com/infobloxopen/atlas-app-toolkit/auth",
     "github.com/infobloxopen/atlas-app-toolkit/gateway",
+    "github.com/infobloxopen/atlas-app-toolkit/gorm",
     "github.com/infobloxopen/atlas-app-toolkit/gorm/resource",
     "github.com/infobloxopen/atlas-app-toolkit/health",
+    "github.com/infobloxopen/atlas-app-toolkit/query",
     "github.com/infobloxopen/atlas-app-toolkit/requestid",
+    "github.com/infobloxopen/atlas-app-toolkit/rpc/resource",
     "github.com/infobloxopen/atlas-app-toolkit/server",
+    "github.com/infobloxopen/protoc-gen-gorm/errors",
     "github.com/infobloxopen/protoc-gen-gorm/options",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/postgres",
@@ -387,7 +408,9 @@
     "github.com/spf13/viper",
     "golang.org/x/net/context",
     "google.golang.org/genproto/googleapis/api/annotations",
+    "google.golang.org/genproto/protobuf/field_mask",
     "google.golang.org/grpc",
+    "google.golang.org/grpc/keepalive",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
