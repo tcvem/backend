@@ -1,23 +1,27 @@
-package main
+package db
 
 import (
 	"database/sql"
-	"log"
 
-	"github.com/golang-migrate/migrate/v4"
-	"github.com/golang-migrate/migrate/v4/database/postgres"
-	_ "github.com/golang-migrate/migrate/v4/source/file"
-	_ "github.com/lib/pq"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/tcvem/backend/pkg/pb"
 )
 
-func main() {
-	db, err := sql.Open("postgres", "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable")
+// MigrateDB builds the backend application database tables
+func MigrateDB(dbSQL *sql.DB) error {
+	db, err := gorm.Open("postgres", dbSQL)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-	driver, err := postgres.WithInstance(db, &postgres.Config{})
-	m, err := migrate.NewWithDatabaseInstance(
-		"file:///migrations",
-		"postgres", driver)
-	m.Steps(1)
+	defer db.Close()
+
+	db.LogMode(true)
+
+	// NOTE: Using db.AutoMigrate is a temporary measure to structure the contacts
+	// database schema. The atlas-app-toolkit team will come up with a better
+	// solution that uses database migration files.
+	return db.AutoMigrate(
+		&pb.CertficateORM{},
+	).Error
 }

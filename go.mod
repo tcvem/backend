@@ -17,6 +17,8 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.0.0
 	github.com/grpc-ecosystem/grpc-gateway v1.9.4
 	github.com/infobloxopen/atlas-app-toolkit v0.18.2
+	github.com/infobloxopen/protoc-gen-atlas-query-validate v0.4.2 // indirect
+	github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1 // indirect
 	github.com/infobloxopen/protoc-gen-gorm v0.17.0
 	github.com/jinzhu/gorm v1.9.10
 	github.com/lib/pq v1.2.0
@@ -24,6 +26,7 @@ require (
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/mattn/go-sqlite3 v1.11.0 // indirect
 	github.com/pelletier/go-toml v1.4.0 // indirect
+	github.com/seizadi/cmdb v0.0.7 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/afero v1.2.2 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect

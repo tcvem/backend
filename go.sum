@@ -153,6 +153,10 @@ github.com/infobloxopen/atlas-app-toolkit v0.0.0-20180810144038-3237ef051031/go.
 github.com/infobloxopen/atlas-app-toolkit v0.18.2 h1:hdgqO5DOvO3UndK1y3NCB18mRTEHVPbnIvXhnII/ICA=
 github.com/infobloxopen/atlas-app-toolkit v0.18.2/go.mod h1:DeDerruKrelNyHNhpOsjMzOJb0Qy97CzA5qsloKrZnk=
 github.com/infobloxopen/go-trees v0.0.0-20180608122459-a1e500cde93c/go.mod h1:PcNJqIlcX/dj3DTG/+QQnRvSgTMG6CLpRMjWcv4+J6w=
+github.com/infobloxopen/protoc-gen-atlas-query-validate v0.4.2 h1:U9b9WqUb19LX4EtQsPUl7FcuKc0jpXz/n1Cg910ufwY=
+github.com/infobloxopen/protoc-gen-atlas-query-validate v0.4.2/go.mod h1:twm2xhXP5FicP4JyRVXcLuaWAEp+IwVYHdCkm6uogCI=
+github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1 h1:xdkjh07eTMJ+H0oQK7nBeLzxRpi6A/pTjydVy6nV5N0=
+github.com/infobloxopen/protoc-gen-atlas-validate v0.4.1/go.mod h1:EDXN2QJ7Qto8UwfBAaI9hTIJFvk39pFrFaejtEBqQRo=
 github.com/infobloxopen/protoc-gen-gorm v0.17.0 h1:36OVseeQalON8/6YG9MGtuHCFzUzGQi0ycUuop7G7eM=
 github.com/infobloxopen/protoc-gen-gorm v0.17.0/go.mod h1:5Kap9oWFj79bhACxoaba/KdH1NInBlQEytekYvU2rao=
 github.com/infobloxopen/themis v0.0.0-20180709114455-d62bb103665c/go.mod h1:HBjRUK4sZC1j+43qyDUANbgEZCiULauOChUFuW51OZE=
@@ -237,6 +241,8 @@ github.com/prometheus/tsdb v0.7.1/go.mod h1:qhTCs0VvXwvX/y3TZrWD7rabWM+ijKTux40T
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
+github.com/seizadi/cmdb v0.0.7 h1:5H8U2TK8jiha49q+Ppr8xe+X38HSNjGS5YWeSfzfbn8=
+github.com/seizadi/cmdb v0.0.7/go.mod h1:+nLQYLHYqQ5N2Vf13BxrYmiB7TcUY2KuOMU45kIvVq8=
 github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24/go.mod h1:M+9NzErvs504Cn4c5DxATwIqPbtswREoFCre64PpcG4=
 github.com/sirupsen/logrus v1.0.5/go.mod h1:pMByvHTf9Beacp5x1UXfOR9xyW/9antXMhjMPG0dEzc=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
