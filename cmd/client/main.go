@@ -4,11 +4,15 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 	"time"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/infobloxopen/atlas-app-toolkit/gorm/resource"
+	atlas_rpc "github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
+
+	uuid "github.com/satori/go.uuid"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"github.com/tcvem/backend/pkg/pb"
@@ -23,16 +27,64 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewBackendClient(conn)
+	bc := pb.NewBackendClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.GetVersion(ctx, &empty.Empty{})
+	r, err := bc.GetVersion(ctx, &empty.Empty{})
 	if err != nil {
 		log.Fatalf("could not version: %v", err)
 	}
 	log.Printf("Version: %s", r.Version)
+
+	uuid := uuid.NewV4()
+	certficateORM := pb.CertficateORM{
+		Id:    uuid.String(),
+		Host:  "www.google.com",
+		Port:  "443",
+		Notes: "",
+	}
+
+	cert, err := certficateORM.ToPB(ctx)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	log.Printf("cert: %+v", cert)
+	cc := pb.NewCertificateServiceClient(conn)
+	_, err = cc.Create(ctx, &pb.CreateCertficateRequest{Payload: &cert})
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	certficateORM = pb.CertficateORM{
+		Id:    uuid.String(),
+		Name:  "gmail",
+		Host:  "smtp.gmail.com",
+		Port:  "587",
+		Notes: "starttls",
+	}
+
+	cert, err = certficateORM.ToPB(ctx)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	log.Printf("cert: %+v", cert)
+	_, err = cc.Update(ctx, &pb.UpdateCertficateRequest{Payload: &cert})
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	resourceID := atlas_rpc.Identifier{ResourceId: uuid.String()}
+	resp, err := cc.Delete(ctx, &pb.DeleteCertficateRequest{Id: &resourceID})
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Printf("%+v", resp)
+
 }
 
 func init() {
