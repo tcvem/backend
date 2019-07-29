@@ -84,7 +84,15 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf("%+v", resp)
-
+	respList, err := cc.List(ctx, &pb.ListCertficateRequest{})
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Printf("%+v", resp)
+	for _, result := range respList.Results {
+		fmt.Printf("host: %s\nport: %s\n", result.Host, result.Port)
+	}
 }
 
 func init() {
