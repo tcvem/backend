@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -94,7 +95,18 @@ func ServeExternal(logger *logrus.Logger) error {
 	if viper.GetString("database.dsn") == "" {
 		setDBConnection()
 	}
-	grpcServer, err := NewGRPCServer(logger, viper.GetString("database.dsn"))
+	dbSQL, err := sql.Open(viper.GetString("database.type"), viper.GetString("database.dsn"))
+	if err != nil {
+		return err
+	}
+	defer dbSQL.Close()
+	db, err := gorm.Open(viper.GetString("database.type"), dbSQL)
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	grpcServer, err := NewGRPCServer(logger, db)
 	if err != nil {
 		logger.Fatalln(err)
 	}
