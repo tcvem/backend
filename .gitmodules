@@ -1,3 +1,3 @@
-[submodule "pkg/pb"]
-	path = pkg/pb
+[submodule "api"]
+	path = api
 	url = https://github.com/tcvem/protobuf.git
