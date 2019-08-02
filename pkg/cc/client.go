@@ -1,4 +1,4 @@
-package client
+package cc
 
 import (
 	"context"
@@ -19,6 +19,7 @@ func NewTcvemClient(conn *grpc.ClientConn) *TcvemClient {
 
 func (m *TcvemClient) CreateCertficate(host, port, notes string) (*pb.CreateCertficateResponse, error) {
 
+	client := pb.NewCertificateServiceClient(m.conn)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
@@ -35,7 +36,6 @@ func (m *TcvemClient) CreateCertficate(host, port, notes string) (*pb.CreateCert
 		return nil, err
 	}
 	req := &pb.CreateCertficateRequest{Payload: &cert}
-	client := pb.NewCertificateServiceClient(m.conn)
 	resp, err := client.Create(ctx, req)
 	if err != nil {
 		return nil, err
