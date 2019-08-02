@@ -35,8 +35,8 @@ PROTOBUF_ARGS += --validate_out="lang=go:."
 WITH_DATABASE ?= false
 WITH_GATEWAY  ?= false
 
-PROTOBUF_FILES = $(PROJECT_ROOT)/pkg/pb/service.proto
-PROTOBUF_FILES += $(PROJECT_ROOT)/pkg/pb/certificate.proto
+PROTOBUF_FILES = $(PROJECT_ROOT)/api/service.proto
+PROTOBUF_FILES += $(PROJECT_ROOT)/api/certificate.proto
 
 ifeq ($(WITH_DATABASE), true)
 PROTOBUF_ARGS += --gorm_out=.
@@ -76,18 +76,18 @@ else
 endif
 
 .PHONY protobuf: protobuf-atlas
-protobuf-atlas:
+protobuf-atlas: vendor-atlas
 	@$(GENERATOR) \
 	$(PROTOBUF_ARGS) \
 	$(PROTOBUF_FILES)
 
 .PHONY vendor: vendor-atlas
 vendor-atlas:
-	@dep ensure -vendor-only
+	@go mod vendor
 
 .PHONY vendor-update: vendor-update-atlas
 vendor-update-atlas:
-	@dep ensure
+	@go mod tidy
 
 .PHONY clean: clean-atlas
 clean-atlas:
