@@ -28,11 +28,11 @@ var _ = math.Inf
 type CertficateORM struct {
 	CreatedAt *time.Time
 	DeletedAt *time.Time
-	Host      string
+	Host      string `gorm:"not null"`
 	Id        string `gorm:"type:uuid;primary_key"`
 	Name      string
 	Notes     string
-	Port      string
+	Port      string `gorm:"not null"`
 	UpdatedAt *time.Time
 }
 
