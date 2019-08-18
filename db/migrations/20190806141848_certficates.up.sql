@@ -9,9 +9,10 @@ CREATE TABLE certficates (
     updated_at timestamp WITH time zone,
     PRIMARY KEY (
         id
+),
+    CONSTRAINT unique_host_port UNIQUE (
+        host,
+        port
 )
 );
-
-ALTER TABLE certficates
-    ADD CONSTRAINT unique_host_port UNIQUE (host, port);
 
