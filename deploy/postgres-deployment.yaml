@@ -26,6 +26,20 @@ spec:
               value: postgres
             - name: POSTGRES_PASSWORD
               value: postgres
+          livenessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 10
+            periodSeconds: 3
+            timeoutSeconds: 3
+            failureThreshold: 2
+          readinessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            timeoutSeconds: 1
+            successThreshold: 1
           ports:
             - containerPort: 5432
               name: postgres
