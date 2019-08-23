@@ -1,0 +1,10 @@
+---
+namePrefix: prod-
+commonLabels:
+  variant: prod
+commonAnnotations:
+  note: production!
+bases:
+  - ../../base
+patches:
+  - ./postgres-health.yaml
