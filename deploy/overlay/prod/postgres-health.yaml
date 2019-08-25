@@ -16,9 +16,11 @@ spec:
             timeoutSeconds: 3
             failureThreshold: 2
           readinessProbe:
-            tcpSocket:
-              port: 5432
-            initialDelaySeconds: 5
-            periodSeconds: 3
-            timeoutSeconds: 1
-            successThreshold: 1
+            exec:
+              command:
+                - sh
+                - "-c"
+                - |
+                  psql -w -U $POSTGRES_USER -d $POSTGRES_DB -c 'SELECT 1'
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
